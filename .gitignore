@@ -142,6 +142,3 @@ vite.config.ts.timestamp-*
 
 # Links
 git-repo-link.txt
-
-# Gthub folder
-.github
