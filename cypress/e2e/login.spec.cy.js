@@ -9,12 +9,23 @@ describe("Orange HRM Tests", () => {
     indexPathname: "/web/index.php/dashboard/index",
   };
 
+  const userData = {
+    userSuccess: {
+      username: "Admin",
+      password: "admin123",
+    },
+    userFail: {
+      username: "Fail",
+      password: "Fail",
+    },
+  };
+
   it("Login - Success", () => {
     cy.visit(
       "https://opensource-demo.orangehrmlive.com/web/index.php/auth/login"
     );
-    cy.get(selectorList.usernameInput).type("Admin");
-    cy.get(selectorList.passwordInput).type("admin123");
+    cy.get(selectorList.usernameInput).type(userData.userSuccess.username);
+    cy.get(selectorList.passwordInput).type(userData.userSuccess.password);
     cy.get(selectorList.loginButton).click();
     cy.location("pathname").should("eq", selectorList.indexPathname);
     // cy.get(selectorList.topBarHeader).contains("Dashboard"); // An unreliable way of using assert
@@ -25,8 +36,8 @@ describe("Orange HRM Tests", () => {
     cy.visit(
       "https://opensource-demo.orangehrmlive.com/web/index.php/auth/login"
     );
-    cy.get(selectorList.usernameInput).type("Fail");
-    cy.get(selectorList.passwordInput).type("Fail");
+    cy.get(selectorList.usernameInput).type(userData.userFail.username);
+    cy.get(selectorList.passwordInput).type(userData.userFail.password);
     cy.get(selectorList.loginButton).click();
     cy.get(selectorList.invalidCredentialsErrorAlert).should(
       "have.class",
