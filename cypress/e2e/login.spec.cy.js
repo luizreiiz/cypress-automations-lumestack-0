@@ -3,7 +3,8 @@ describe("Orange HRM Tests", () => {
     usernameInput: '[name="username"]',
     passwordInput: '[name="password"]',
     loginButton: "button.oxd-button",
-    topBarHeader: ".oxd-text--h6",
+    // topBarHeader: ".oxd-topbar-header-title",
+    dashboardGrid: ".orangehrm-dashboard-grid",
     invalidCredentialsErrorAlert: "div.oxd-alert-content",
     indexPathname: "/web/index.php/dashboard/index",
   };
@@ -16,8 +17,9 @@ describe("Orange HRM Tests", () => {
     cy.get(selectorList.passwordInput).type("admin123");
     cy.get(selectorList.loginButton).click();
     cy.location("pathname").should("eq", selectorList.indexPathname);
-    cy.get(selectorList.topBarHeader).contains("Dashboard"); // A way to assert
-    cy.get(selectorList.topBarHeader).should("have.text", "Dashboard"); // Another way to assert
+    // cy.get(selectorList.topBarHeader).contains("Dashboard"); // An unreliable way of using assert
+    // cy.get(selectorList.topBarHeader).should("have.text", "Dashboard"); // Another unreliable way of using assert
+    cy.get(selectorList.dashboardGrid).should("be.visible");
   });
   it("Login - Fail", () => {
     cy.visit(
