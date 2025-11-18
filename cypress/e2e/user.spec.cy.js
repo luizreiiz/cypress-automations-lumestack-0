@@ -37,8 +37,8 @@ describe("Orange HRM Tests", () => {
     cy.get(selectorList.genericInput).eq(5).clear().type("111222333"); // Driver's License Number
     cy.get(selectorList.genericInput).eq(6).clear().type("1981-10-08"); // License Expiry Date
     cy.get(selectorList.dateCloseButton).click(); // Close the date picker
-    cy.get(selectorList.genericDropdown).eq(0); //.click(".oxd-select-option").eq(27); // Nationality
-    cy.get(selectorList.genericDropdown).eq(1); //.get(".oxd-select-option").eq(2); // Marital Status
+    cy.get(selectorList.genericDropdown).eq(0); // Nationality // ❓I don't discovery how to pick a selector item
+    cy.get(selectorList.genericDropdown).eq(1); // Marital Status // ❓I don't discovery how to pick a selector item
   });
   it("Login - Fail", () => {
     cy.visit("/auth/login");
