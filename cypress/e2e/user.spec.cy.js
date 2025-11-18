@@ -14,6 +14,9 @@ describe("Orange HRM Tests", () => {
     lastNameInput: 'input[name="lastName"]',
     invalidCredentialsErrorAlert: "div.oxd-alert-content",
     genericInput: ".oxd-input--active",
+    // dateInput: '[placeholder="yyyy-dd-mm"]',
+    dateCloseButton: ".--close",
+    genericDropdown: ".oxd-select-text-input",
   };
 
   it.only("User Info Update - Success", () => {
@@ -24,14 +27,18 @@ describe("Orange HRM Tests", () => {
     cy.location("pathname").should("eq", selectorList.indexPathname);
     // cy.get(selectorList.topBarHeader).contains("Dashboard"); // An unreliable way of using assert
     // cy.get(selectorList.topBarHeader).should("have.text", "Dashboard"); // Another unreliable way of using assert
-    cy.get(selectorList.dashboardGrid).should("be.visible");
+    cy.get(selectorList.dashboardGrid).should("be.visible"); // A reliable way of using assert in this case
     cy.get(selectorList.myInfoButton).click();
     cy.get(selectorList.firstNameInput).clear().type("Stanley");
     cy.get(selectorList.middleNameInput).clear().type("Michael");
     cy.get(selectorList.lastNameInput).clear().type("Moore");
-    cy.get(selectorList.genericInput).eq(3).clear().type("123456");
-    cy.get(selectorList.genericInput).eq(4).clear().type("654321");
-    cy.get(selectorList.genericInput).eq(5).clear().type("11abc22def333");
+    cy.get(selectorList.genericInput).eq(3).clear().type("123456"); // Employee Id
+    cy.get(selectorList.genericInput).eq(4).clear().type("654321"); // Other Id
+    cy.get(selectorList.genericInput).eq(5).clear().type("111222333"); // Driver's License Number
+    cy.get(selectorList.genericInput).eq(6).clear().type("1981-10-08"); // License Expiry Date
+    cy.get(selectorList.dateCloseButton).click(); // Close the date picker
+    cy.get(selectorList.genericDropdown).eq(0); //.click(".oxd-select-option").eq(27); // Nationality
+    cy.get(selectorList.genericDropdown).eq(1); //.get(".oxd-select-option").eq(2); // Marital Status
   });
   it("Login - Fail", () => {
     cy.visit("/auth/login");
