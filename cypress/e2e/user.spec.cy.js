@@ -41,6 +41,8 @@ describe("Orange HRM Tests", () => {
     cy.get(selectorList.genericDropdown).eq(0); // Nationality // ❓I don't discovery how to pick a selector item
     cy.get(selectorList.genericDropdown).eq(1); // Marital Status // ❓I don't discovery how to pick a selector item
     cy.get(selectorList.submitButton).eq(0).click(); // Save Button
+    cy.get("body").should("contain.text", "Successfully Updated"); // Success Alert
+    cy.get(".oxd-toast-close");
   });
   it("Login - Fail", () => {
     cy.visit("/auth/login");
