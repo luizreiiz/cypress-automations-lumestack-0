@@ -17,6 +17,7 @@ describe("Orange HRM Tests", () => {
     // dateInput: '[placeholder="yyyy-dd-mm"]',
     dateCloseButton: ".--close",
     genericDropdown: ".oxd-select-text-input",
+    submitButton: "[type='submit']",
   };
 
   it.only("User Info Update - Success", () => {
@@ -39,6 +40,7 @@ describe("Orange HRM Tests", () => {
     cy.get(selectorList.dateCloseButton).click(); // Close the date picker
     cy.get(selectorList.genericDropdown).eq(0); // Nationality // ❓I don't discovery how to pick a selector item
     cy.get(selectorList.genericDropdown).eq(1); // Marital Status // ❓I don't discovery how to pick a selector item
+    cy.get(selectorList.submitButton).eq(0).click(); // Save Button
   });
   it("Login - Fail", () => {
     cy.visit("/auth/login");
