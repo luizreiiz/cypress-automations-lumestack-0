@@ -16,7 +16,7 @@ describe("Orange HRM Tests", () => {
     genericInput: ".oxd-input--active",
     // dateInput: '[placeholder="yyyy-dd-mm"]',
     dateCloseButton: ".--close",
-    genericDropdown: ".oxd-select-text-input",
+    genericDropdown: ".oxd-select-text--after",
     submitButton: "[type='submit']",
   };
 
@@ -36,11 +36,21 @@ describe("Orange HRM Tests", () => {
     cy.get(selectorList.genericInput).eq(3).clear().type("123456"); // Employee Id
     cy.get(selectorList.genericInput).eq(4).clear().type("654321"); // Other Id
     cy.get(selectorList.genericInput).eq(5).clear().type("111222333"); // Driver's License Number
-    cy.get(selectorList.genericInput).eq(6).clear().type("1981-10-08"); // License Expiry Date
+    cy.get(selectorList.genericInput).eq(6).clear().type("2030-06-01"); // License Expiry Date
     cy.get(selectorList.dateCloseButton).click(); // Close the date picker
-    cy.get(selectorList.genericDropdown).eq(0); // Nationality // ❓I don't discovery how to pick a selector item
-    cy.get(selectorList.genericDropdown).eq(1); // Marital Status // ❓I don't discovery how to pick a selector item
-    cy.get(selectorList.submitButton).eq(0).click(); // Save Button
+    cy.get(selectorList.genericDropdown).eq(0).click(); // Nationality
+    cy.get(".oxd-select-option").eq(26).click(); // Select "Brazilian"
+    cy.get(selectorList.genericDropdown).eq(1).click(); // Marital Status
+    cy.get(".oxd-select-option").eq(2).click(); // Select "Married"
+    cy.get(selectorList.genericInput).eq(8).clear().type("1981-08-10"); // Birthday
+    cy.get(".oxd-radio-input").eq(1).click(); // Select "Female"
+    cy.get(selectorList.submitButton).eq(0).click(); // Save Button - Personal Details
+    cy.get("body").should("contain.text", "Successfully Updated"); // Success Alert
+    cy.get(".oxd-toast-close");
+    cy.get(selectorList.genericDropdown).eq(2).click(); // Blood Type
+    cy.get(".oxd-select-option").eq(6).click(); // Select "O-"
+    cy.get(selectorList.genericInput).eq(9).clear().type("5555"); // Test_Field
+    cy.get(selectorList.submitButton).eq(0).click(); // Save Button - Custom Fields
     cy.get("body").should("contain.text", "Successfully Updated"); // Success Alert
     cy.get(".oxd-toast-close");
   });
