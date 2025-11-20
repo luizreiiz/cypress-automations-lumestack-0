@@ -19,6 +19,7 @@ describe("Orange HRM Tests", () => {
     genericDropdown: ".oxd-select-text--after",
     dropdowOption: ".oxd-select-option",
     radioInput: ".oxd-radio-input",
+    checkboxInput: ".bi-check",
     submitButton: "[type='submit']",
   };
 
@@ -35,23 +36,34 @@ describe("Orange HRM Tests", () => {
     cy.get(selectorList.firstNameInput).clear().type("Tommy");
     cy.get(selectorList.middleNameInput).clear().type("Lee");
     cy.get(selectorList.lastNameInput).clear().type("Jones");
-    cy.get(selectorList.genericInput).eq(3).clear().type("123456"); // Employee Id
-    cy.get(selectorList.genericInput).eq(4).clear().type("654321"); // Other Id
-    cy.get(selectorList.genericInput).eq(5).clear().type("111222333"); // Driver's License Number
-    cy.get(selectorList.genericInput).eq(6).clear().type("2030-01-06"); // License Expiry Date
+    cy.get(selectorList.genericInput).eq(3).clear().type("Tolee"); // Nickname
+    cy.get(selectorList.genericInput).eq(4).clear().type("123456"); // Employee Id
+    cy.get(selectorList.genericInput).eq(5).clear().type("654321"); // Other Id
+    cy.get(selectorList.genericInput).eq(6).clear().type("111222333"); // Driver's License Number
+    cy.get(selectorList.genericInput)
+      .eq(7)
+      .clear({ force: true })
+      .type("2030-01-06"); // License Expiry Date
     cy.get(selectorList.dateCloseButton).click(); // Close the date picker
+    cy.get(selectorList.genericInput).eq(8).clear().type("00000"); // SSN Number
+    cy.get(selectorList.genericInput).eq(9).clear().type("11111"); // SIN Number
     cy.get(selectorList.genericDropdown).eq(0).click(); // Nationality
     cy.get(selectorList.dropdowOption).eq(26).click(); // Select "Brazilian"
     cy.get(selectorList.genericDropdown).eq(1).click(); // Marital Status
     cy.get(selectorList.dropdowOption).eq(2).click(); // Select "Married"
-    cy.get(selectorList.genericInput).eq(8).clear().type("1981-10-08"); // Birthday
+    cy.get(selectorList.genericInput).eq(11).clear().type("1981-10-08"); // Birthday
     cy.get(selectorList.radioInput).eq(1).click(); // Select "Female"
+    cy.get(selectorList.genericInput).eq(12).clear().type("Navy"); // Military Service
+    // cy.get(selectorList.checkboxInput).eq(0); // Select "Smoker"
+    cy.get(
+      "#app div:nth-child(2) > div.oxd-checkbox-wrapper > label > input"
+    ).uncheck(); // Unselect "Smoker"
     cy.get(selectorList.submitButton).eq(0).click(); // Save Button - Personal Details
     cy.get("body").should("contain.text", "Successfully Updated"); // Success Alert
     cy.get(".oxd-toast-close");
     cy.get(selectorList.genericDropdown).eq(2).click(); // Blood Type
     cy.get(selectorList.dropdowOption).eq(6).click(); // Select "O-"
-    cy.get(selectorList.genericInput).eq(9).clear().type("5555"); // Test_Field
+    cy.get(selectorList.genericInput).eq(13).clear().type("5555"); // Test_Field
     cy.get(selectorList.submitButton).eq(0).click(); // Save Button - Custom Fields
     cy.get("body").should("contain.text", "Successfully Updated"); // Success Alert
     cy.get(".oxd-toast-close");
