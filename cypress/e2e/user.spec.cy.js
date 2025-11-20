@@ -1,16 +1,18 @@
 import userData from "../fixtures/users/userData.json";
 import LoginPage from "../Pages/loginPage.js";
+import DashboardPage from "../Pages/dashboardPage.js";
 
 const loginPage = new LoginPage();
+const dashboardPage = new DashboardPage();
 
 describe("Orange HRM Tests", () => {
     const selectorList = {
         // usernameInput: '[name="username"]',
         // passwordInput: '[name="password"]',
         // loginButton: "button.oxd-button",
-        indexPathname: "/web/index.php/dashboard/index",
+        // indexPathname: "/web/index.php/dashboard/index",
         // topBarHeader: ".oxd-topbar-header-title",
-        dashboardGrid: ".orangehrm-dashboard-grid",
+        // dashboardGrid: ".orangehrm-dashboard-grid",
         myInfoButton: '[href="/web/index.php/pim/viewMyDetails"]',
         firstNameInput: 'input[name="firstName"]',
         middleNameInput: 'input[name="middleName"]',
@@ -27,20 +29,23 @@ describe("Orange HRM Tests", () => {
         submitButton: "[type='submit']",
     };
 
-    it("User Info Update - Success", () => {
+    it.only("User Info Update - Success", () => {
         loginPage.accessLoginPage();
         loginPage.loginWithUser(
             userData.userSuccess.username,
             userData.userSuccess.password
         );
-        // cy.visit("/auth/login");
-        // cy.get(selectorList.usernameInput).type(userData.userSuccess.username);
-        // cy.get(selectorList.passwordInput).type(userData.userSuccess.password);
-        // cy.get(selectorList.loginButton).click();
+        dashboardPage.verifyDashboardPage();
+
+        // ########################### ALTERNATIVE ASSERTS ###########################
+
         // cy.location("pathname").should("eq", selectorList.indexPathname);
-        // // cy.get(selectorList.topBarHeader).contains("Dashboard"); // An unreliable way of using assert
-        // // cy.get(selectorList.topBarHeader).should("have.text", "Dashboard"); // Another unreliable way of using assert
+        // cy.get(selectorList.topBarHeader).contains("Dashboard"); // An unreliable way of using assert
+        // cy.get(selectorList.topBarHeader).should("have.text", "Dashboard"); // Another unreliable way of using assert
         // cy.get(selectorList.dashboardGrid).should("be.visible"); // A reliable way of using assert in this case
+
+        // ########################### IN PROGRESS ###########################
+
         // cy.get(selectorList.myInfoButton).click();
         // cy.get(selectorList.firstNameInput).clear().type("Tommy");
         // cy.get(selectorList.middleNameInput).clear().type("Lee");
