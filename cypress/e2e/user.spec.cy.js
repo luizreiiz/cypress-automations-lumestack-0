@@ -19,7 +19,8 @@ describe("Orange HRM Tests", () => {
     genericDropdown: ".oxd-select-text--after",
     dropdowOption: ".oxd-select-option",
     radioInput: ".oxd-radio-input",
-    checkboxInput: ".bi-check",
+    checkboxInput:
+      "#app div:nth-child(2) > div.oxd-checkbox-wrapper > label > input",
     submitButton: "[type='submit']",
   };
 
@@ -55,9 +56,7 @@ describe("Orange HRM Tests", () => {
     cy.get(selectorList.radioInput).eq(1).click(); // Select "Female"
     cy.get(selectorList.genericInput).eq(12).clear().type("Navy"); // Military Service
     // cy.get(selectorList.checkboxInput).eq(0); // Select "Smoker"
-    cy.get(
-      "#app div:nth-child(2) > div.oxd-checkbox-wrapper > label > input"
-    ).uncheck(); // Unselect "Smoker"
+    cy.get(selectorList.checkboxInput).eq(0).uncheck(); // Unselect "Smoker"
     cy.get(selectorList.submitButton).eq(0).click(); // Save Button - Personal Details
     cy.get("body").should("contain.text", "Successfully Updated"); // Success Alert
     cy.get(".oxd-toast-close");
