@@ -1,6 +1,6 @@
-import userData from "../fixtures/users/userData.json";
-import LoginPage from "../Pages/loginPage.js";
-import DashboardPage from "../Pages/dashboardPage.js";
+import userData from "../fixtures/users/userData";
+import LoginPage from "../Pages/loginPage";
+import DashboardPage from "../Pages/dashboardPage";
 
 const loginPage = new LoginPage();
 const dashboardPage = new DashboardPage();
@@ -31,7 +31,7 @@ describe("Orange HRM Tests", () => {
 
     it.only("User Info Update - Success", () => {
         loginPage.accessLoginPage();
-        loginPage.loginWithUser(
+        loginPage.loginWithAnyUser(
             userData.userSuccess.username,
             userData.userSuccess.password
         );
@@ -82,7 +82,7 @@ describe("Orange HRM Tests", () => {
     });
     it("Login - Fail", () => {
         loginPage.accessLoginPage();
-        loginPage.loginWithUser(
+        loginPage.loginWithAnyUser(
             userData.userFail.username,
             userData.userFail.password
         );
