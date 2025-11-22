@@ -9,17 +9,14 @@ class LoginPage {
 
         return selectors;
     }
-
     accessLoginPage() {
         cy.visit("/auth/login");
     }
-
     loginWithAnyUser(username, password) {
         cy.get(this.selectorsList().usernameInput).type(username);
         cy.get(this.selectorsList().passwordInput).type(password);
         cy.get(this.selectorsList().loginButton).click();
     }
-
     checkCredentialsErrorAlert() {
         cy.get(this.selectorsList().invalidCredentialsErrorAlert).should(
             "have.class",
