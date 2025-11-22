@@ -26,7 +26,7 @@ describe("Orange HRM Tests", () => {
         myInfoPage.updateDateOfBirth("1999-03-02");
         myInfoPage.updateGender(1); // Select "Female"
         myInfoPage.clickSubmitButton(0);
-        myInfoPage.updateBloodType(3, "5555"); // Select "O-" and fill Test_Field
+        myInfoPage.updateBloodType(3, "5555"); // Select "B+" and fill Test_Field
         myInfoPage.clickSubmitButton(1);
     });
     it("Login - Fail", () => {
