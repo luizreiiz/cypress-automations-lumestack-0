@@ -1,9 +1,11 @@
 import userData from "../fixtures/users/userData";
 import LoginPage from "../Pages/loginPage";
 import DashboardPage from "../Pages/dashboardPage";
+import MenuPage from "../Pages/menuPage";
 
 const loginPage = new LoginPage();
 const dashboardPage = new DashboardPage();
+const menuPage = new MenuPage();
 
 describe("Orange HRM Tests", () => {
     const selectorList = {
@@ -13,7 +15,7 @@ describe("Orange HRM Tests", () => {
         // indexPathname: "/web/index.php/dashboard/index",
         // topBarHeader: ".oxd-topbar-header-title",
         // dashboardGrid: ".orangehrm-dashboard-grid",
-        myInfoButton: '[href="/web/index.php/pim/viewMyDetails"]',
+        // myInfoButton: '[href="/web/index.php/pim/viewMyDetails"]',
         firstNameInput: 'input[name="firstName"]',
         middleNameInput: 'input[name="middleName"]',
         lastNameInput: 'input[name="lastName"]',
@@ -36,6 +38,7 @@ describe("Orange HRM Tests", () => {
             userData.userSuccess.password
         );
         dashboardPage.verifyDashboardPage();
+        menuPage.accessMyInfo();
 
         // ########################### ALTERNATIVE ASSERTS ###########################
 
