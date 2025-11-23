@@ -66,6 +66,8 @@ class MyInfoPage {
     }
     clickSubmitButton(index) {
         cy.get(this.selectorsList().submitButton).eq(index).click();
+        cy.get("body").should("contain.text", "Successfully Updated"); // Success Alert
+        cy.get(".oxd-toast-close"); // Success Alert
     }
 }
 export default MyInfoPage;
