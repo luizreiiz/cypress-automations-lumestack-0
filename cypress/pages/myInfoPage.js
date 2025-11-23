@@ -5,7 +5,7 @@ class MyInfoPage {
             middleNameInput: 'input[name="middleName"]',
             lastNameInput: 'input[name="lastName"]',
             genericInput: ".oxd-input--active",
-            dataCloseButton: ".--close",
+            dateCloseButton: ".--close",
             genericDropdown: ".oxd-select-text--after",
             dropdownOption: ".oxd-select-option",
             radioInput: ".oxd-radio-input",
@@ -36,7 +36,7 @@ class MyInfoPage {
             .eq(6)
             .clear({ force: true })
             .type(licenseExpiryDate);
-        cy.get(this.selectorsList().dataCloseButton).click();
+        cy.get(this.selectorsList().dateCloseButton).click();
     }
     updateNationality(nationality) {
         cy.get(this.selectorsList().genericDropdown).eq(0).click();
@@ -51,7 +51,7 @@ class MyInfoPage {
             .eq(8)
             .clear({ force: true })
             .type(dateOfBirth);
-        cy.get(this.selectorsList().dataCloseButton).click();
+        cy.get(this.selectorsList().dateCloseButton).click();
     }
     updateGender(gender) {
         cy.get(this.selectorsList().radioInput).eq(gender).click();
