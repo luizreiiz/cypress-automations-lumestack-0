@@ -3,7 +3,9 @@ import LoginPage from "../Pages/loginPage";
 import DashboardPage from "../Pages/dashboardPage";
 import MenuPage from "../Pages/menuPage";
 import MyInfoPage from "../pages/myInfoPage";
+import Chance from "chance";
 
+const chance = new Chance();
 const loginPage = new LoginPage();
 const dashboardPage = new DashboardPage();
 const menuPage = new MenuPage();
@@ -18,15 +20,38 @@ describe("Orange HRM Tests", () => {
         );
         dashboardPage.verifyDashboardPage();
         menuPage.accessMyInfo();
-        myInfoPage.updateEmployeeFullName("Mary", "Jane", "Watson"); // Fill First, Middle and Last Name
-        myInfoPage.updateEmployeeIds("123456", "654321"); // Fill Employee ID and Other ID
-        myInfoPage.updateDriverLicense("111222333", "2030-01-06"); // Fill Driver License Number and License Expiry Date
-        myInfoPage.updateNationality(27); // Select "English"
-        myInfoPage.updateMaritalStatus(2); // Select "Married"
-        myInfoPage.updateDateOfBirth("1999-03-02"); // Fill Date of Birth
-        myInfoPage.updateGender(1); // Select "Female"
+        myInfoPage.updateEmployeeFullName(
+            chance.first({ gender: "female", nationality: "en" }),
+            chance.last({ nationality: "en" }),
+            chance.last({ nationality: "en" })
+        ); // Filling ramdom first, middle and last name using Chance
+        myInfoPage.updateEmployeeIds(
+            chance.integer({ min: 99999, max: 999999 }),
+            chance.integer({ min: 99999, max: 999999 })
+        ); // Filling ramdom employee ID and other ID using Chance
+        myInfoPage.updateDriverLicense(
+            chance.integer({ min: 99999999, max: 999999999 }),
+            chance.exp_year() +
+                "-" +
+                chance.integer({ min: 1, max: 28 }) +
+                "-" +
+                chance.exp_month()
+        ); // Filling ramdom driver license number and license expiry date using Chance
+        myInfoPage.updateNationality(chance.integer({ min: 1, max: 193 })); // Selecting ramdom nationality using Chance
+        myInfoPage.updateMaritalStatus(chance.integer({ min: 1, max: 3 })); // Selecting ramdom marital status using Chance
+        myInfoPage.updateDateOfBirth(
+            chance.year({ min: 1970, max: 2005 }) +
+                "-" +
+                chance.integer({ min: 1, max: 28 }) +
+                "-" +
+                chance.month({ raw: true }).numeric
+        ); // Filling date of birth using Chance
+        myInfoPage.updateGender(chance.integer({ min: 0, max: 1 })); // Selecting ramdom gender using Chance
         myInfoPage.clickSubmitButton(0); // Save Personal Details
-        myInfoPage.updateBloodType(3, "5555"); // Select "B+" and fill Test_Field
+        myInfoPage.updateBloodType(
+            chance.integer({ min: 1, max: 8 }),
+            chance.integer({ min: 1, max: 99 })
+        ); // Selecting ramdom blood type and filling Test_Field using Chance
         myInfoPage.clickSubmitButton(1); // Save Custom Fields
     });
 });
