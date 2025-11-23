@@ -21,9 +21,9 @@ describe("Orange HRM Tests", () => {
         dashboardPage.verifyDashboardPage();
         menuPage.accessMyInfo();
         myInfoPage.updateEmployeeFullName(
-            chance.first({ gender: "female", nationality: "en" }),
-            chance.last({ nationality: "en" }),
-            chance.last({ nationality: "en" })
+            chance.first(),
+            chance.last(),
+            chance.last()
         ); // Filling ramdom first, middle and last name using Chance
         myInfoPage.updateEmployeeIds(
             chance.integer({ min: 99999, max: 999999 }),
