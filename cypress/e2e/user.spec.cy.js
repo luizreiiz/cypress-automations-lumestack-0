@@ -10,7 +10,7 @@ const menuPage = new MenuPage();
 const myInfoPage = new MyInfoPage();
 
 describe("Orange HRM Tests", () => {
-    it.only("User Info Update - Success", () => {
+    it.only("User Info Update", () => {
         loginPage.accessLoginPage();
         loginPage.loginWithAnyUser(
             userData.userSuccess.username,
@@ -28,13 +28,5 @@ describe("Orange HRM Tests", () => {
         myInfoPage.clickSubmitButton(0); // Save Personal Details
         myInfoPage.updateBloodType(3, "5555"); // Select "B+" and fill Test_Field
         myInfoPage.clickSubmitButton(1); // Save Custom Fields
-    });
-    it("Login - Fail", () => {
-        loginPage.accessLoginPage();
-        loginPage.loginWithAnyUser(
-            userData.userFail.username,
-            userData.userFail.password
-        );
-        loginPage.checkCredentialsErrorAlert();
     });
 });
