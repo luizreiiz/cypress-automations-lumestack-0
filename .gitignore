@@ -142,3 +142,6 @@ vite.config.ts.timestamp-*
 
 # Links
 git-repo-link.txt
+
+# npm package files
+package-lock.json
